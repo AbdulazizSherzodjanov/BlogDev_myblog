@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block mycontent %}
+    <div class="container my-5">
+        <div class="row">
+        <div class="col-12 col-md-8">
+            <h1 class="text-center">So'nggi Yangiliklar</h1>
+            <hr>
+            {% for post in posts %}
+            <span>{{post.date_added | time:'H:i'}}</span>
+            <span><i class="fa-solid fa-eye"></i>: {{post.post_view}} </span>
+            <span class="md-2 text-danger fw-bold">{{post.cat_id}}</span>
+            <a href="{% url 'post_detail-page' post.slug %}"
+               class="h5 text-decoration-none d-block"
+               style="cursor:pointer">{{post.title}}</a>
+            {% endfor %}
+        </div>
+        {% include 'interested_post.html' %}
+        </div>
+    </div>
+{% endblock %}

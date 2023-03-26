@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mycontent %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-8 border border-danger">
+                <div class="row">
+<!--                    big column-->
+                    <div class="col-md-6">
+                        <img src="/media/{{ LastPost.post_img }}" class="img-fluid">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <span >{{LastPost.date_added | time:'H:i'}} /
+                            {{LastPost.date_added | date:'d.m.y'}}</span>
+                        <a href="{% url  'post_detail-page' LastPost.slug %}" class="h4 my-3 text-decoration-none d-block" style="cursor:pointer">
+                            {{LastPost.title}}</a>
+                        <p>{{LastPost.body | safe |truncatechars:100}}</p>
+                    </div>
+<!--                   small column -->
+                    {% for post in data %}
+                    <div class="col-md-6 my-2">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <img src="/media/{{ post.post_img }}" class="img-fluid">
+                            </div>
+                             <div class="col-12 col-md-6">
+                                <span >{{post.date_added | time:'H:i'}} /
+                                    {{post.date_added | date:'d.m.y'}}</span>
+                                <a href="{% url  'post_detail-page' post.slug %}" style="cursor:pointer">
+                                    {{post.title | truncatechars:70}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {%include 'interested_post.html'%}
+        </div>
+    </div>
+{% endblock %}
