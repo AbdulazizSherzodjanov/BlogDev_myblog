@@ -30,7 +30,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name_plural = 'Yangiliklar'
+        verbose_name_plural = 'Postlar'
 
 
     def __str__(self):
